@@ -23,6 +23,7 @@ function consulta(){
   }
 }
 
+let datoRegistro = document.getElementById('datoRegistro')
 const paciente = [];
 
 do{
@@ -49,7 +50,14 @@ do{
       const consulta = paciente.map(dato => dato.nombre);
       alert("Se encuentran registrados: "+ registros +" pacientes. \nLlamados: "+consulta);
       for (const info of paciente){
-        alert("Registro paciente: \nDocumento: "+info.documento+"\nNombre:" +info.nombre+"\nApellido: "+info.apellido+"\nTeléfono: "+info.telefono+"\nProcedimiento: "+info.procedimiento+"\nCosto: "+info.costo); 
+        let caja = document.createElement('div');
+        caja.innerHTML = `<p>Documento: ${info.documento}<p>
+                          <p>Nombre: ${info.nombre}</p>
+                          <p>Apellido: ${info.apellido}</p>
+                          <p>Teléfono: ${info.telefono}</p>
+                          <p>Procedimiento: ${info.procedimiento}</p>
+                          <p>Costo: ${info.costo}</p>`;
+        datoRegistro.appendChild(caja);
       }
     }
   }
