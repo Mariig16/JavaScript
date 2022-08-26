@@ -1,64 +1,42 @@
 class Paciente{
-  constructor (documento, nombre, apellido, telefono, procedimiento, costo){
+  constructor (documento, nombre){
     this.documento = Number(documento);
-    this.nombre = nombre.toUpperCase();
-    this.apellido = apellido.toUpperCase();
-    this.telefono = Number(telefono);
-    this.procedimiento = procedimiento.toUpperCase();
-    this.costo = Number(costo);
+    this.nombre = nombre;
   }
 }
-
-function  pago() {
-  return this.costo - this.costo * 0.10 ;
-}
-function consulta(){
-  for (const info of paciente){
-    alert("La información guardada del paciente es: \n"+info.id_usuario+"\n" +info.nombre+"\n"+info.apellido+"\n"+info.procedimiento+"\n"+info.costo);
-    console.log(info.id_usuario);
-    console.log(info.nombre);
-    console.log(info.apellido);
-    console.log(info.procedimiento);
-    console.log(info.costo);
-  }
-}
-
-let datoRegistro = document.getElementById('datoRegistro')
 const paciente = [];
+//Defino el DOM
+let formulario = document.getElementById("formu");
+formulario.addEventListener('submit', datosFormu);
 
-do{
-  var resp = prompt("Si desea ingresar al sistema un paciente, presione 1.\nSi desea consultar pacientes guardados, presione 2\nSi desea salir del sistema presione 0");
-  if (resp == 0){
-    break;
+//validar que se ingresen datos
+function validar(){
+  documentoP = formu.children[1].value;
+  nombreP = formu.children[2].value;
+  if (documentoP == '' || nombreP == ''){
+    alert("Error, debe ingresar todos los datos");
+    bandera = false;
+  }else{
+    bandera = true;
   }
-  else{
-    if (resp == 1){
-      documento = prompt("Ingrese número de documento de identidad del paciente");
-      nombre = prompt("Ingrese el nombre del paciente");
-      apellido = prompt("Ingrese el apellido del paciente");
-      telefono = prompt("Ingrese el número telefónico del paciente");
-      procedimiento = prompt("Ingrese el procedimiento que se realizó el paciente");
-      costo = prompt("Ingrese el costo del procedimiento registrado");
-      paciente.push(new Paciente(documento, nombre, apellido, telefono, procedimiento, costo));
-      alert("La información guardada del paciente es: \nDocumento: "+documento+"\nNombre:" +nombre+"\nApellido: "+apellido+"\nTeléfono: "+telefono+"\nProcedimiento: "+procedimiento+"\nCosto: "+costo);
-      alert("El paciente debe pagar: "+ pago());
-    }
-    if (resp == 2){
-      for (let i = 0; i < paciente.length; i++){
-        registros = i + 1;
-      }
-      const consulta = paciente.map(dato => dato.nombre);
-      alert("Se encuentran registrados: "+ registros +" pacientes. \nLlamados: "+consulta);
-      for (const info of paciente){
-        let caja = document.createElement('div');
-        caja.innerHTML = `<p>Documento: ${info.documento}<p>
-                          <p>Nombre: ${info.nombre}</p>
-                          <p>Apellido: ${info.apellido}</p>
-                          <p>Teléfono: ${info.telefono}</p>
-                          <p>Procedimiento: ${info.procedimiento}</p>
-                          <p>Costo: ${info.costo}</p>`;
-        datoRegistro.appendChild(caja);
-      }
-    }
+}
+
+function datosFormu(e){
+  e.preventDefault();
+  validar();
+  if (bandera == true){
+    let formu = e.target;
+    paciente.push(new Paciente(documentoP, nombreP));
+    formu.children[1].value = '';
+    formu.children[2].value = '';
+    console.log(paciente);
+    agregarPaciente();
   }
-}while(resp != 0)
+}
+
+function agregarPaciente(){
+    let caja = document.createElement('tabla');
+    caja.innerHTML = `<tbody><td>${documentoP}</td>
+                      <td>${nombreP}</td></tbody>`;
+    tabla.appendChild(caja);
+}
