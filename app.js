@@ -5,7 +5,7 @@ class Paciente{
   }
 }
 const paciente = [];
-
+key = paciente;
 
 //Defino el DOM
 let formulario = document.getElementById("formu");
@@ -31,19 +31,25 @@ function datosFormu(e){
     paciente.push(new Paciente(documentoP, nombreP));
     formu.children[1].value = '';
     formu.children[2].value = '';
-    let mydataJson = JSON.stringify(paciente);
-    localStorage.setItem("mydata", mydataJson);
     console.log(paciente);
+    const changeString = JSON.stringify(key); 
+    localStorage.setItem("key", changeString);
     agregarPaciente();
   }
 }
 
 function agregarPaciente(){
-    let mydataJson = localStorage.getItem(paciente);
-    let mydata = JSON.parse(mydataJson);
+  if (localStorage != null){
+ 
+  }
+  JSON.parse(localStorage.getItem(paciente))
+  if(paciente == null){
+    console.log("No hay datos registrados, se viene un nuevo registro")
+  }else{
     let caja = document.createElement('tbody');
-    caja.innerHTML = `<tbody><td>${mydata.documentoP}</td>
+    caja.innerHTML = `<tbody><td>${documentoP}</td>
                       <td>${nombreP}</td></tbody>`;
     tabla.appendChild(caja);
+  }
 
 }
