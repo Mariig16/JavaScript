@@ -21,13 +21,14 @@
         <form action="" id="formu">
           <label>Documento:</label>
           <input type="number" name="documento" id="idocumento">
+          <label>Nombre:</label>
           <input type="text" name="nombre" id="inombre">
-          <input type="submit" value="ENVIAR">
-          <input type="submit" value="MOSTRAR DATOS">
+          <button id="btnAgregarPaciente">REGISTRO</button>
         </form>
       </div>
+      <!-- <ul id="contenedorPacientes"></ul> -->
       <div id="datoRegistro">
-        <table class="table text-bg-dark" id="tabla">
+        <table class="table text-bg-dark" id="contenedorPacientes">
           <thead class="thead-inverse">
             <tr>
               <th>Documento</th>
