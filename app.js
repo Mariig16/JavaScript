@@ -4,18 +4,21 @@ class Paciente{
     this.nombre = nombre;
   }
 }
+
+
 const keyLocalStorage = "listaPacientes";
 document.addEventListener("DOMContentLoaded", () => {
   let pacientes = []; // El arreglo global que vamos a manejar
   
   // Declaración de elementos del DOM
   const $contenedorPacientes = document.querySelector("#contenedorPacientes"),
-  $btnGuardarPaciente = document.querySelector("#btnAgregarPaciente"),
+  // $btnGuardarPaciente = document.querySelector("#btnAgregarPaciente"),
   $newPacienteDocumento = document.querySelector("#idocumento"),
   $newPacienteNombre = document.querySelector("#inombre");
   
-  // Escuchar clic del botón para agregar nuevo paciente
-  $btnGuardarPaciente.onclick = () => {
+  let btn = document.getElementById("btnAgregarPaciente");
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
     const pDocument = $newPacienteDocumento.value;
     const pNombre = $newPacienteNombre.value;
     validar();
@@ -25,20 +28,47 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       pacientes.push(new Paciente(pDocument, pNombre));
       $newPacienteDocumento.value = "";
-      $newPacienteNombre.value = "";
-      alert("Datos de: "+pNombre +" registrados correctamente")
+      $newPacienteNombre.value = "";   
+      // alert("Datos de: "+pNombre +" registrados correctamente")
+      swal.fire({
+        title: "Registro exitoso",
+        text: "Datos de: "+pNombre +" guardados correctamente",
+        icon: "success",
+        confirmButtonText: "Ok",
+        padding: "3em",
+        background: "#f27474",
+        confirmButtonColor: "#000000",
+        allowOutsideClick: false,
+        showCloseButton: false,
+      })
+      // alertaDatosNoValidos();
       guardarPacientesEnLocal();
       refrescarListaDePacientes();
-    }
-    
-  };
-  
+    } 
+  });
+
+ 
+
   //APLICAR OPERADOR TERNARIO Y LÓGICO OR
   function validar(){
     const pDocument = $newPacienteDocumento.value;
     const pNombre = $newPacienteNombre.value;
     const validado = (pDocument == '') || (pNombre == '') ? true : false;
-    validado ? alert("Error, debe ingresar todos los datos") : bandera = true;
+    validado ? alerterror() : bandera = true;
+  }
+
+  const alerterror = () => {
+    swal.fire({
+      title: "Registro exitoso",
+      text: "Datos de: "+pNombre +" guardados correctamente",
+      icon: "warning",
+      confirmButtonText: "Ok",
+      padding: "3em",
+      background: "#f27474",
+      confirmButtonColor: "#000000",
+      allowOutsideClick: false,
+      showCloseButton: false,
+    })
   }
   
   const obtenerPacientesDeAlmacenamiento = () => {
@@ -50,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       return [];
     }
-
+    
     
   };
   
@@ -86,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   pacientes = obtenerPacientesDeAlmacenamiento();
   refrescarListaDePacientes();
-
+  
   //spread de objetos
   console.log("Hola soy la lista", ...pacientes);
   

@@ -1,3 +1,57 @@
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin: 8px;
+}
+a {
+  text-decoration: none;
+  color: #f27474;
+}
+/* a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+} */
+.global-header {
+  background-color: #fff;
+  box-shadow: 0 1px 15px 0 #f27474;
+  height: 140px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+}
+
+.global-header nav {
+  font-size: 30px;
+  color: #f27474;
+  float: right;
+  margin-top: 60px;
+}
+.global-header ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+.global-header .logo {
+  width: 300px;
+  height: 100px;
+  background-image: url(/Pacientes/image/logo1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  float: left;
+  margin-top: 22px;
+  margin-left: 15px;
+}
 
 .cover-container{
   margin-top: 100px;  
@@ -21,4 +75,11 @@
   margin: auto;
   margin-top: 50px;  
   width: 25%;
+}
+
+.cuerpo {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  
 }

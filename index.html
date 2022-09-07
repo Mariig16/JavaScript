@@ -7,13 +7,26 @@
   <title>Doctora Muelitas</title>
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  </head>
-  <!--Css-->
-  <link rel="stylesheet" href="./style.css">
+</head>
+<!--Css-->
+<link rel="stylesheet" href="./style.css">
 </head>
 <body class="d-flex h-100 text-center "> 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <main class="px-3">
+  <header class="global-header">
+    <div class="page-container">
+      <a href="./image/logo1.png" class="logo"></a>
+      <nav>
+        <ul>
+          <li><a href="/guides">Guides</a></li>
+          <li><a href="/docs">Docs</a></li>
+          <li><a href="https://opencollective.com/SweetAlert#backers" target="_blank">Donate</a></li>
+          <li><a href="https://github.com/t4t5/sweetalert" class="github-icon"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="cuerpo px-3">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <h1>Desafío Entregable- Incoporar Eventos  - By, Marian González</h1><br>
       <h2>Simulador Clinica Odontológica</h2><br>
       <h1>REGISTRO DE PACIENTES</h1>
@@ -37,13 +50,14 @@
           </thead>
         </table>
       </div>
-    </main>
-  
-    <footer class="mt-auto text-white-50 fixed-bottom">
-      <p>Muelitas - Derechos Reservados <a href="" class="text-white"></p>
+    </div>
+  </main>
+  <footer class="mt-auto text-white-50">
+    <p>Muelitas - Derechos Reservados <a href="" class="text-white"></p>
     </footer>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="app.js"></script>
 </body>
 </html>
