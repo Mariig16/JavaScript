@@ -1,3 +1,8 @@
+//Simulación de asincronía
+setTimeout(() => {
+  alert("Hola cuenta 5 segundo")
+}, 5000);
+
 class Paciente{
   constructor (documento, nombre){
     this.documento = Number(documento);
@@ -8,6 +13,7 @@ class Paciente{
 
 const keyLocalStorage = "listaPacientes";
 document.addEventListener("DOMContentLoaded", () => {
+  let bandera = false;
   let pacientes = []; // El arreglo global que vamos a manejar
   
   // Declaración de elementos del DOM
@@ -45,6 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
       guardarPacientesEnLocal();
       refrescarListaDePacientes();
     } 
+    if(bandera == false){
+      swal.fire({
+        title: "Alerta",
+        text: "Campos incompletos",
+        icon: "warning",
+        confirmButtonText: "Ok",
+        padding: "3em",
+        background: "#ff3f28",
+        confirmButtonColor: "#000000",
+        allowOutsideClick: false,
+        showCloseButton: false,
+      })
+    }
   });
 
  
@@ -54,23 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const pDocument = $newPacienteDocumento.value;
     const pNombre = $newPacienteNombre.value;
     const validado = (pDocument == '') || (pNombre == '') ? true : false;
-    validado ? alerterror() : bandera = true;
+    validado ? bandera = false : bandera = true;
   }
 
-  const alerterror = () => {
-    swal.fire({
-      title: "Registro exitoso",
-      text: "Datos de: "+pNombre +" guardados correctamente",
-      icon: "warning",
-      confirmButtonText: "Ok",
-      padding: "3em",
-      background: "#f27474",
-      confirmButtonColor: "#000000",
-      allowOutsideClick: false,
-      showCloseButton: false,
-    })
-  }
-  
   const obtenerPacientesDeAlmacenamiento = () => {
     const posibleLista = JSON.parse(localStorage.getItem(keyLocalStorage));
     
@@ -80,8 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       return [];
     }
-    
-    
   };
   
   const guardarPacientesEnLocal = () => {
