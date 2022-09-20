@@ -1,7 +1,7 @@
-//Simulación de asincronía
-setTimeout(() => {
-  alert("Hola cuenta 5 segundo")
-}, 5000);
+// //Simulación de asincronía
+// setTimeout(() => {
+//   alert("Hola cuenta 5 segundo")
+// }, 5000);
 
 class Paciente{
   constructor (documento, nombre){
@@ -109,10 +109,26 @@ document.addEventListener("DOMContentLoaded", () => {
         guardarTareasEnAlmacenamiento(pacientes);
         refrescarListaDeTareas();
       };
-      let caja = document.createElement('tbody');
-      caja.innerHTML = `<tbody><td>${paciente.documento}</td>
-      <td>${paciente.nombre}</td></tbody>`;
-      $contenedorPacientes.appendChild(caja);
+
+      // let caja = document.createElement('tbody');
+      // caja.innerHTML = `<tbody><td>${paciente.documento}</td>
+      // <td>${paciente.nombre}</td></tbody>`;
+      // $contenedorPacientes.appendChild(caja);
+      //Aplicando FETCH
+
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then((res)=>res.json())
+        .then((data)=>data.forEach((info)=>{
+          let caja = document.createElement('tbody');
+          caja.innerHTML = `
+          <tbody><td>${info.id}</td>
+          <td>${info.name}</td>
+          <td>${info.username}</td>
+          <td>${info.email}</td></tbody>`;
+          $contenedorPacientes.appendChild(caja);
+        }))
+      
+
     }
   };
   // Llamar a la función la primera vez
